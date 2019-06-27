@@ -1,0 +1,32 @@
+:root {
+  --coral: #FF6A70;
+  --storm: #51516F;
+  --white: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  /* Native apps doesn't allow text selection, so mobile PWAs shouldn't. */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (min-width: 1024px) {
+    padding: 0;
+  }
+}

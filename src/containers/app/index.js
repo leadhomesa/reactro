@@ -1,49 +1,25 @@
 import React, { Fragment } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
-import { breakpoints, pxtorem } from 'styles/index-example';
 
 // containers
-import Home from 'containers/home-example';
-import NotFound from 'containers/not-found-example';
+import Home from 'containers/home';
+import NotFound from 'containers/not-found';
 
 // components
-import Nav from 'components/nav-example';
+import Nav from 'components/nav';
 
-const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Source Sans Pro', sans-serif;
-    /* Native apps doesn't allow text selection, so mobile PWAs shouldn't. */
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-`;
-
-const Container = styled.div`
-  max-width: ${pxtorem(breakpoints.large)};
-  margin: 0 auto;
-
-  @media (max-width: ${pxtorem(breakpoints.large)}) {
-    padding: 0 1rem;
-  }
-`;
+import styles from './style.css';
 
 const App = () => (
   <Fragment>
-    <GlobalStyle />
     <Nav />
-    <Container>
+    <div className={styles.container}>
       <Switch>
         <Route path='/' component={Home} exact />
         <Route component={NotFound} />
       </Switch>
-    </Container>
+    </div>
   </Fragment>
 );
 

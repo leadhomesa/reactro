@@ -1,0 +1,18 @@
+.nav {
+  height: 70px;
+  border-bottom: 4px solid var(--coral);
+  background-color: var(--storm);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+}
+
+.logo {
+  height: 40px;
+  margin-right: 1rem;
+}
+
+.heading {
+  margin-bottom: 0.5rem;
+}

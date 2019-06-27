@@ -2,13 +2,10 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 // components
-import { StyledLink } from './style';
-
 const Home = () => (
   <div>
-    <Helmet title='Carbon - Hello World!' />
+    <Helmet title='Reactro - Hello World!' />
     <h1>Hello World!</h1>
-    <StyledLink to='/abcd'>Broken link</StyledLink>
   </div>
 );
 
