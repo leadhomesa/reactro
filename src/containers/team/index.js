@@ -2,12 +2,12 @@ import React, { Suspense, lazy } from 'react';
 
 import ProgressBar from 'components/progress-bar';
 
-const Home = lazy(() => import('./home'));
+const Team = lazy(() => import('./team'));
 
-const LazyHome = props => (
+const LazyTeam = props => (
   <Suspense fallback={<ProgressBar />}>
-    <Home {...props} />
+    <Team {...props} />
   </Suspense>
 );
 
-export default LazyHome;
+export default LazyTeam;

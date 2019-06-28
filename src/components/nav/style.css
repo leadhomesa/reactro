@@ -1,18 +1,30 @@
 .nav {
   height: 70px;
   border-bottom: 4px solid var(--coral);
-  background-color: var(--storm);
   padding: 0 1rem;
   display: flex;
   align-items: center;
-  color: var(--white);
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .logo {
-  height: 40px;
-  margin-right: 1rem;
+  height: 32px;
 }
 
 .heading {
-  margin-bottom: 0.5rem;
+  font-size: 20px;
+  line-height: 32px;
+  margin: 0;
+  color: var(--coral);
+}
+
+.githubLink {
+  height: 32px;
+  width: 32px;
+  text-decoration: none;
+}
+
+.githubLink i {
+  margin: 0;
 }

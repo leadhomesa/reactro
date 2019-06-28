@@ -2,6 +2,7 @@ import React from 'react';
 import { hydrate, render } from 'react-dom';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 
+import firestore from './firestore'; // eslint-ignore-line
 import App from 'containers/app';
 
 const supportsHistory = 'pushState' in window.history;
@@ -27,6 +28,7 @@ if (module.hot)
     renderApp(NewApp);
   });
 
+firestore.init();
 renderApp(App);
 
 // service worker bit

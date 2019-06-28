@@ -1,11 +1,16 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
-const NotFound = lazy(() => import('./not-found'));
+// svgs
+import NotFoundSVG from 'assets/404.svg';
 
-const LazyNotFound = props => (
-  <Suspense fallback={<p>loading</p>}>
-    <NotFound {...props} />
-  </Suspense>
+const NotFound = () => (
+  <div>
+    <Helmet title='Reactro - 404 Not Found!' />
+    <h1>This is not the route you&apos;re looking for.</h1>
+    <p>This is not the route I&apos;m looking for...</p>
+    <img src={NotFoundSVG} />
+  </div>
 );
 
-export default LazyNotFound;
+export default NotFound;

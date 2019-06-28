@@ -4,6 +4,7 @@ import Route from 'react-router-dom/Route';
 
 // containers
 import Home from 'containers/home';
+import Team from 'containers/team';
 import NotFound from 'containers/not-found';
 
 // components
@@ -17,6 +18,7 @@ const App = () => (
     <div className={styles.container}>
       <Switch>
         <Route path='/' component={Home} exact />
+        <Route path='/:team' component={Team} exact />
         <Route component={NotFound} />
       </Switch>
     </div>

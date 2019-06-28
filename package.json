@@ -26,10 +26,14 @@
   "license": "MIT",
   "dependencies": {
     "acorn": "^6.1.1",
+    "classnames": "^2.2.6",
+    "final-form": "^4.16.1",
+    "firebase": "^6.2.3",
     "nes.css": "^2.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-final-form": "^6.3.0",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1"
   },
