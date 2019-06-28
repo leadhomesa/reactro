@@ -59,7 +59,7 @@ class Team extends Component {
             </div>
           )}
           {boards && (
-            <Section title='Boards'>
+            <Section title='Boards' className={styles.boards}>
               {boards.map(x => (
                 <Link
                   key={x.name}

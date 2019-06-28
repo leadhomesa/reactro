@@ -9,8 +9,13 @@ const SimpleForm = ({ onSubmit, inputLabel }) => {
   return (
     <Form
       onSubmit={onSubmit}
-      render={({ handleSubmit, pristine }) => (
-        <form className={styles.form} onSubmit={handleSubmit}>
+      render={({ handleSubmit, pristine, reset }) => (
+        <form
+          className={styles.form}
+          onSubmit={event => {
+            handleSubmit(event).then(reset);
+          }}
+        >
           <div className='nes-field'>
             <label>{inputLabel}</label>
             <Field
