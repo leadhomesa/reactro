@@ -10,16 +10,8 @@ module.exports = Object.assign(
       stats: 'minimal',
       hot: true,
       port,
-      proxy: {
-        '/api': {
-          target: process.env.API_URL || '/api/',
-          secure: false,
-          changeOrigin: true
-        }
-      },
       writeToDisk: true,
       overlay: true,
-      publicPath: `http://localhost:${port}/`,
       historyApiFallback: true
     }
   },

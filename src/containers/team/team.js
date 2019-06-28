@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -6,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import firestore from '../../firestore';
 
 // components
+import Section from 'components/section';
 import SimpleForm from 'components/simple-form';
 import ProgressBar from 'components/progress-bar';
 
@@ -31,7 +33,6 @@ class Team extends Component {
         fetchedBoards.push({ id: doc.id, ...doc.data() })
       );
       this.setState({ boards: fetchedBoards });
-      console.log(fetchedBoards);
     });
   }
   componentWillUnmount() {
@@ -58,20 +59,17 @@ class Team extends Component {
             </div>
           )}
           {boards && (
-            <div className='nes-container with-title'>
-              <p className='title'>Boards</p>
-              <div className={styles.boards}>
-                {boards.map(x => (
-                  <a
-                    key={x.name}
-                    className={classNames('nes-btn', styles.button)}
-                    href={`/${team}/${x.id}`}
-                  >
-                    {x.name}
-                  </a>
-                ))}
-              </div>
-            </div>
+            <Section title='Boards'>
+              {boards.map(x => (
+                <Link
+                  key={x.name}
+                  className={classNames('nes-btn', styles.button)}
+                  to={`/${team}/${x.id}`}
+                >
+                  {x.name}
+                </Link>
+              ))}
+            </Section>
           )}
         </div>
       </>

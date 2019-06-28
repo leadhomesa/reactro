@@ -5,6 +5,7 @@ import Route from 'react-router-dom/Route';
 // containers
 import Home from 'containers/home';
 import Team from 'containers/team';
+import Board from 'containers/board';
 import NotFound from 'containers/not-found';
 
 // components
@@ -18,6 +19,7 @@ const App = () => (
     <div className={styles.container}>
       <Switch>
         <Route path='/' component={Home} exact />
+        <Route path='/:team/:board' component={Board} exact />
         <Route path='/:team' component={Team} exact />
         <Route component={NotFound} />
       </Switch>

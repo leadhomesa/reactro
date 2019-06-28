@@ -12,8 +12,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: buildFolder,
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
