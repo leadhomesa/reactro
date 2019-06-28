@@ -56,10 +56,11 @@ class Board extends Component {
                   <SimpleForm
                     inputLabel='What`s good'
                     onSubmit={({ value }) => {
+                      const good = board.good || [];
                       firestore
                         .getCollection('boards')
                         .doc(boardId)
-                        .update({ good: [...board.good, value] });
+                        .update({ good: [...good, value] });
                     }}
                   />
                 </div>
@@ -72,10 +73,11 @@ class Board extends Component {
                   <SimpleForm
                     inputLabel='What`s bad'
                     onSubmit={({ value }) => {
+                      const bad = board.bad || [];
                       firestore
                         .getCollection('boards')
                         .doc(boardId)
-                        .update({ bad: [...board.bad, value] });
+                        .update({ bad: [...bad, value] });
                     }}
                   />
                 </div>
@@ -89,10 +91,11 @@ class Board extends Component {
                   <SimpleForm
                     inputLabel='Actionable?'
                     onSubmit={({ value }) => {
+                      const action = board.action || [];
                       firestore
                         .getCollection('boards')
                         .doc(boardId)
-                        .update({ action: [...board.action, value] });
+                        .update({ action: [...action, value] });
                     }}
                   />
                 </div>
