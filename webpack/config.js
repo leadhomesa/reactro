@@ -1,3 +1,4 @@
+require('dotenv').config();
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -5,6 +6,7 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 const alias = require('./alias');
 
+const publicPath = process.env.PUBLIC_URL || '';
 const assetsFolder = path.join(__dirname, '..', 'src', 'assets');
 const buildFolder = path.join(__dirname, '..', 'build');
 
@@ -57,7 +59,8 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([{ from: assetsFolder, to: buildFolder }]),
     new HtmlWebPackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
+      publicPath
     }),
     new WorkboxPlugin.GenerateSW({
       swDest: 'sw.js',

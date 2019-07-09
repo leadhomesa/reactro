@@ -7,6 +7,7 @@ import Home from 'containers/home';
 import Team from 'containers/team';
 import Board from 'containers/board';
 import NotFound from 'containers/not-found';
+import Health from 'containers/health';
 
 // components
 import Nav from 'components/nav';
@@ -21,6 +22,7 @@ const App = () => (
         <Route path='/' component={Home} exact />
         <Route path='/:team/:board' component={Board} exact />
         <Route path='/:team' component={Team} exact />
+        <Route path='/health' component={Health} exact />
         <Route component={NotFound} />
       </Switch>
     </div>
