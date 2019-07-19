@@ -9,10 +9,6 @@
   opacity: 0.4;
 }
 
-.icon:hover {
-  opacity: 0.6;
-}
-
 .icon.active {
   opacity: 1;
 }
