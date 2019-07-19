@@ -14,7 +14,7 @@ const ProgressBar = () => {
       // will unmount
       clearInterval(intervalId);
     };
-  });
+  }, []);
 
   return (
     <progress className='nes-progress is-primary' value={value} max='100' />
