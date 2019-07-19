@@ -44,7 +44,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
-    "@leadhome/eslint-config": "^1.0.4",
+    "@leadhome/eslint-config": "^1.2.1",
     "@svgr/webpack": "^4.2.0",
     "ajv": "^6.10.0",
     "autoprefixer": "^9.6.0",

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -14,68 +14,65 @@ import ProgressBar from 'components/progress-bar';
 // styles
 import styles from './style.css';
 
-class Team extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      boards: null
-    };
-    this.listener = null;
+const Team = ({
+  match: {
+    params: { team }
   }
-  componentDidMount() {
-    const { team } = this.props.match.params;
+}) => {
+  const [boards, setBoards] = useState(null);
+
+  useEffect(() => {
+    // on mount
     const boardsRef = firestore.getCollection('boards');
     const query = boardsRef.where('team', '==', team);
 
-    this.listener = query.onSnapshot(snapshot => {
+    const listener = query.onSnapshot(snapshot => {
       const fetchedBoards = [];
       snapshot.forEach(doc =>
         fetchedBoards.push({ id: doc.id, ...doc.data() })
       );
-      this.setState({ boards: fetchedBoards });
+      setBoards(fetchedBoards);
     });
-  }
-  componentWillUnmount() {
-    // unsubscribe
-    this.listener();
-  }
-  render() {
-    const { team } = this.props.match.params;
-    const { boards } = this.state;
-    return (
-      <>
-        <Helmet title={`Reactro - ${team}`} />
-        <div className={styles.team}>
-          {!boards && <ProgressBar />}
-          {boards && <h2 className={styles.heading}>{team}</h2>}
-          {boards && (
-            <div className={styles.add}>
-              <SimpleForm
-                inputLabel='Board name'
-                onSubmit={({ value }) => {
-                  firestore.getCollection('boards').add({ name: value, team });
-                }}
-              />
-            </div>
-          )}
-          {boards && (
-            <Section title='Boards' className={styles.boards}>
-              {boards.map(x => (
-                <Link
-                  key={x.name}
-                  className={classNames('nes-btn', styles.button)}
-                  to={`/${team}/${x.id}`}
-                >
-                  {x.name}
-                </Link>
-              ))}
-            </Section>
-          )}
-        </div>
-      </>
-    );
-  }
-}
+
+    return () => {
+      // destroy listener
+      listener();
+    };
+  });
+
+  return (
+    <>
+      <Helmet title={`Reactro - ${team}`} />
+      <div className={styles.team}>
+        {!boards && <ProgressBar />}
+        {boards && <h2 className={styles.heading}>{team}</h2>}
+        {boards && (
+          <div className={styles.add}>
+            <SimpleForm
+              inputLabel='Board name'
+              onSubmit={({ value }) => {
+                firestore.getCollection('boards').add({ name: value, team });
+              }}
+            />
+          </div>
+        )}
+        {boards && (
+          <Section title='Boards' className={styles.boards}>
+            {boards.map(x => (
+              <Link
+                key={x.name}
+                className={classNames('nes-btn', styles.button)}
+                to={`/${team}/${x.id}`}
+              >
+                {x.name}
+              </Link>
+            ))}
+          </Section>
+        )}
+      </div>
+    </>
+  );
+};
 
 Team.propTypes = {
   match: PropTypes.shape({
