@@ -2,17 +2,13 @@
   display: flex;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid black;
-}
-
-.item:first-child {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  border-top: 1px solid black;
+  border-bottom: 2px solid #dedede;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .list {
-  display: row;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
