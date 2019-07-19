@@ -82,7 +82,7 @@ const Board = ({
                 <Section title='Bad'>
                   <SectionList
                     items={board.bad}
-                    onDelete={i => deleteFromBoard('good', board.good, i)}
+                    onDelete={i => deleteFromBoard('bad', board.bad, i)}
                   />
                 </Section>
                 <SimpleForm
@@ -98,7 +98,7 @@ const Board = ({
                 <Section title='Action'>
                   <SectionList
                     items={board.action}
-                    onDelete={i => deleteFromBoard('good', board.good, i)}
+                    onDelete={i => deleteFromBoard('action', board.action, i)}
                   />
                 </Section>
                 <SimpleForm
