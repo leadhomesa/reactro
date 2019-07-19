@@ -32,7 +32,7 @@ const Board = ({
   }, []);
 
   const addToBoard = (boardName, items, newValue) => {
-    const newItems = [...items, newValue];
+    const newItems = (items && [...items, newValue]) || [newValue];
     updateBoard(boardName, newItems);
   };
 
