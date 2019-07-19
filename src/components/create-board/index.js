@@ -36,17 +36,17 @@ const CreateBoardForm = ({ onSubmit }) => {
             <label>Quarter</label>
 
             <div className={classNames(styles.field)}>
-              <Field name='quarter' type='radio' value='01' component={Radio}>
-                <span>01</span>
+              <Field name='quarter' type='radio' value='Q1' component={Radio}>
+                <span>Q1</span>
               </Field>
-              <Field name='quarter' type='radio' value='02' component={Radio}>
-                <span>02</span>
+              <Field name='quarter' type='radio' value='Q2' component={Radio}>
+                <span>Q2</span>
               </Field>
-              <Field name='quarter' type='radio' value='03' component={Radio}>
-                <span>03</span>
+              <Field name='quarter' type='radio' value='Q3' component={Radio}>
+                <span>Q3</span>
               </Field>
-              <Field name='quarter' type='radio' value='04' component={Radio}>
-                <span>04</span>
+              <Field name='quarter' type='radio' value='Q4' component={Radio}>
+                <span>Q4</span>
               </Field>
             </div>
             <div className={classNames('nes-field', styles.field)}>
