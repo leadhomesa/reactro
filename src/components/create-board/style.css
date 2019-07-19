@@ -1,0 +1,24 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+}
+
+.input {
+  width: calc(100% - 8px);
+}
+
+.field {
+  width: 100%;
+}
+
+.submit {
+  margin-top: 1rem;
+}
+
+.boards {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
