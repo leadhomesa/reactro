@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import Link from 'react-router-dom/Link';
 import classNames from 'classnames';
 
-import firestore from '../../firestore';
+import firestore from '../../firebase/firestore';
 
 // components
 import ProgressBar from 'components/progress-bar';

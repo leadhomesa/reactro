@@ -1,0 +1,22 @@
+.characters {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.icon {
+  margin-right: 1rem;
+  opacity: 0.4;
+}
+
+.icon:hover {
+  opacity: 0.6;
+}
+
+.icon.active {
+  opacity: 1;
+}
+
+.icon:last-child {
+  margin-right: 0;
+}

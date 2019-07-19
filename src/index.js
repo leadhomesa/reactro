@@ -2,7 +2,7 @@ import React from 'react';
 import { hydrate, render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import firestore from './firestore';
+import firestore from './firebase/firestore';
 import App from 'containers/app';
 
 const publicUrl = process.env.PUBLIC_URL || '/';

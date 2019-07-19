@@ -1,15 +1,8 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 
-const config = {
-  apiKey: 'AIzaSyDwDs8XkDdhPjQ-67k-zDuvnpd82_BDIp8',
-  authDomain: 'leadhome-reactro.firebaseapp.com',
-  databaseURL: 'https://leadhome-reactro.firebaseio.com',
-  projectId: 'leadhome-reactro',
-  storageBucket: 'leadhome-reactro.appspot.com',
-  messagingSenderId: '449876336912',
-  appId: '1:449876336912:web:d0598cf8f100da8f'
-};
+import config from './config';
 
 class Firestore {
   constructor() {
@@ -18,6 +11,13 @@ class Firestore {
   init() {
     firebase.initializeApp(config);
     this.db = firebase.firestore();
+
+    // anon sign in
+    const auth = firebase.auth();
+    auth.signInAnonymously().catch(error => console.log(error));
+    auth.onAuthStateChanged(user =>
+      sessionStorage.setItem('firebaseUser', JSON.stringify(user))
+    );
   }
   getCollection(name) {
     return this.db.collection(name);
