@@ -1,0 +1,18 @@
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.item:first-child {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-top: 1px solid black;
+}
+
+.list {
+  display: row;
+  width: 100%;
+}
