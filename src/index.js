@@ -1,8 +1,8 @@
 import React from 'react';
 import { hydrate, render } from 'react-dom';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
+import { BrowserRouter } from 'react-router-dom';
 
-import firestore from './firestore'; // eslint-ignore-line
+import firestore from './firestore';
 import App from 'containers/app';
 
 const publicUrl = process.env.PUBLIC_URL || '/';
@@ -36,7 +36,7 @@ renderApp(App);
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator)
   window.addEventListener('load', () => {
     navigator.serviceWorker
-      .register(`${publicUrl}sw.js`)
+      .register('sw.js')
       .then(registration => {
         console.log('SW registered: ', registration);
       })
