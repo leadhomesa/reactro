@@ -13,7 +13,15 @@ const SectionList = ({ items, onDelete }) => (
           onClick={() => onDelete(index)}
           className={styles.item}
         >
-          {x}
+          <div className={styles.text}>{x}</div>
+          <i
+            className={classNames(
+              'nes-icon',
+              'close',
+              'is-small',
+              styles.delete
+            )}
+          />
         </div>
       ))}
   </div>
