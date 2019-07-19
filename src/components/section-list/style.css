@@ -1,4 +1,11 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .item {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -9,10 +16,19 @@
 
 .item:last-child {
   border-bottom: 0;
+  margin-bottom: 0;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.text {
+  width: 100% - 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.delete {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0px;
+  right: 0px;
 }

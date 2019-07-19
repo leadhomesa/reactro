@@ -69,14 +69,12 @@ const Board = ({
               <SimpleForm
                 useTextArea
                 inputLabel='What`s good'
-                onSubmit={({ value }) =>
-                  addToBoard('good', board.action, value)
-                }
+                onSubmit={({ value }) => addToBoard('good', board.good, value)}
               />
               <SimpleForm
                 useTextArea
                 inputLabel='What`s bad'
-                onSubmit={({ value }) => addToBoard('bad', board.action, value)}
+                onSubmit={({ value }) => addToBoard('bad', board.bad, value)}
               />
               <SimpleForm
                 useTextArea
