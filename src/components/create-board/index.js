@@ -14,8 +14,7 @@ const Radio = ({ input, children }) => (
   </label>
 );
 
-const CreateBoard = ({ onSubmit, useTextArea = false }) => {
-  const nesClassName = useTextArea ? 'nes-textarea' : 'nes-input';
+const CreateBoardForm = ({ onSubmit, useTextArea = false }) => {
   return (
     <Form
       onSubmit={({ quarter, sprintNumber }) => {
@@ -56,7 +55,7 @@ const CreateBoard = ({ onSubmit, useTextArea = false }) => {
                 component='input'
                 type='text'
                 name='sprintNumber'
-                className={classNames(nesClassName, styles.input)}
+                className={classNames('nes-input', styles.input)}
               />
             </div>
           </Section>
@@ -73,7 +72,7 @@ const CreateBoard = ({ onSubmit, useTextArea = false }) => {
   );
 };
 
-CreateBoard.propTypes = {
+CreateBoardForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   useTextArea: PropTypes.bool
 };
@@ -83,4 +82,4 @@ Radio.propTypes = {
   children: PropTypes.array
 };
 
-export default CreateBoard;
+export default CreateBoardForm;
