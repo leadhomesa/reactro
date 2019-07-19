@@ -6,6 +6,7 @@ import firestore from '../../firestore';
 
 // components
 import Section from 'components/section';
+import SectionList from 'components/section-list';
 import SimpleForm from 'components/simple-form';
 import ProgressBar from 'components/progress-bar';
 
@@ -33,6 +34,27 @@ const Board = ({
     };
   });
 
+  const addToBoard = (boardName, items, newValue) => {
+    const newItems = [...items, newValue];
+    updateBoard(boardName, newItems);
+  };
+
+  const deleteFromBoard = (boardName, items, index) => {
+    if (items && items.length > index) {
+      items.splice(index, 1);
+      updateBoard(boardName, items);
+    }
+  };
+
+  const updateBoard = (boardName, items) => {
+    firestore
+      .getCollection('boards')
+      .doc(boardId)
+      .update({
+        [boardName]: items
+      });
+  };
+
   const title = `Reactro - ${(board && board.name) || 'Loading'}`;
 
   return (
@@ -47,53 +69,42 @@ const Board = ({
               <SimpleForm
                 useTextArea
                 inputLabel='What`s good'
-                onSubmit={({ value }) => {
-                  const good = board.good || [];
-                  firestore
-                    .getCollection('boards')
-                    .doc(boardId)
-                    .update({ good: [...good, value] });
-                }}
+                onSubmit={({ value }) =>
+                  addToBoard('good', board.action, value)
+                }
               />
               <SimpleForm
                 useTextArea
                 inputLabel='What`s bad'
-                onSubmit={({ value }) => {
-                  const bad = board.bad || [];
-                  firestore
-                    .getCollection('boards')
-                    .doc(boardId)
-                    .update({ bad: [...bad, value] });
-                }}
+                onSubmit={({ value }) => addToBoard('bad', board.action, value)}
               />
               <SimpleForm
                 useTextArea
                 inputLabel='Actionable?'
-                onSubmit={({ value }) => {
-                  const action = board.action || [];
-                  firestore
-                    .getCollection('boards')
-                    .doc(boardId)
-                    .update({ action: [...action, value] });
-                }}
+                onSubmit={({ value }) =>
+                  addToBoard('action', board.action, value)
+                }
               />
             </div>
             <hr className={styles.separator} />
             <div className={styles.grid}>
               <Section title='Good'>
-                <ul className='nes-list is-disc'>
-                  {board.good && board.good.map(x => <li key={x}>{x}</li>)}
-                </ul>
+                <SectionList
+                  items={board.good}
+                  onDelete={i => deleteFromBoard('good', board.good, i)}
+                />
               </Section>
               <Section title='Bad'>
-                <ul className='nes-list is-disc'>
-                  {board.bad && board.bad.map(x => <li key={x}>{x}</li>)}
-                </ul>
+                <SectionList
+                  items={board.bad}
+                  onDelete={i => deleteFromBoard('bad', board.bad, i)}
+                />
               </Section>
               <Section title='Actionable'>
-                <ul className='nes-list is-disc'>
-                  {board.action && board.action.map(x => <li key={x}>{x}</li>)}
-                </ul>
+                <SectionList
+                  items={board.action}
+                  onDelete={i => deleteFromBoard('action', board.action, i)}
+                />
               </Section>
             </div>
           </>
