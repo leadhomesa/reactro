@@ -34,6 +34,12 @@ const Board = ({
     };
   });
 
+  const addToBoard = (boardName, items, newValue) => {
+    items = items || [];
+    items.push(newValue);
+    updateBoard(boardName, items);
+  };
+
   const deleteFromBoard = (boardName, items, index) => {
     if (items && items.length > index) {
       items.splice(index, 1);
@@ -42,13 +48,12 @@ const Board = ({
   };
 
   const updateBoard = (boardName, items) => {
-    const updateRequest = {};
-    updateRequest[boardName] = items;
-
     firestore
       .getCollection('boards')
       .doc(boardId)
-      .update(updateRequest);
+      .update({
+        [boardName]: items
+      });
   };
 
   const title = `Reactro - ${(board && board.name) || 'Loading'}`;
@@ -71,11 +76,9 @@ const Board = ({
                 </Section>
                 <SimpleForm
                   inputLabel='What`s good'
-                  onSubmit={({ value }) => {
-                    const good = board.good || [];
-                    good.push(value);
-                    updateBoard('good', good);
-                  }}
+                  onSubmit={({ value }) =>
+                    addToBoard('good', board.good, value)
+                  }
                 />
               </div>
               <div>
@@ -87,11 +90,7 @@ const Board = ({
                 </Section>
                 <SimpleForm
                   inputLabel='What`s bad'
-                  onSubmit={({ value }) => {
-                    const bad = board.bad || [];
-                    bad.push(value);
-                    updateBoard('bad', bad);
-                  }}
+                  onSubmit={({ value }) => addToBoard('bad', board.bad, value)}
                 />
               </div>
               <div>
@@ -103,11 +102,9 @@ const Board = ({
                 </Section>
                 <SimpleForm
                   inputLabel='Actionable?'
-                  onSubmit={({ value }) => {
-                    const action = board.action || [];
-                    action.push(value);
-                    updateBoard('action', action);
-                  }}
+                  onSubmit={({ value }) =>
+                    addToBoard('action', board.action, value)
+                  }
                 />
               </div>
             </div>
