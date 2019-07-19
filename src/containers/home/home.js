@@ -15,6 +15,7 @@ const Home = () => {
   const [teams, setTeams] = useState(null);
 
   useEffect(() => {
+    // on mount
     firestore
       .getCollection('teams')
       .get()
@@ -23,7 +24,7 @@ const Home = () => {
         snapshot.forEach(x => fetchedTeams.push(x.data()));
         setTeams(fetchedTeams);
       });
-  }, [teams]);
+  });
 
   return (
     <>
