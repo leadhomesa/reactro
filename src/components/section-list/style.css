@@ -7,6 +7,10 @@
   margin-bottom: 2rem;
 }
 
+.item:last-child {
+  border-bottom: 0;
+}
+
 .list {
   display: flex;
   flex-direction: column;
