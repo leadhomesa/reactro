@@ -24,7 +24,7 @@ const Home = () => {
         snapshot.forEach(x => fetchedTeams.push(x.data()));
         setTeams(fetchedTeams);
       });
-  });
+  }, []);
 
   return (
     <>

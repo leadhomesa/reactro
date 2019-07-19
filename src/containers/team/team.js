@@ -34,11 +34,8 @@ const Team = ({
       setBoards(fetchedBoards);
     });
 
-    return () => {
-      // destroy listener
-      listener();
-    };
-  });
+    return () => listener();
+  }, []);
 
   return (
     <>

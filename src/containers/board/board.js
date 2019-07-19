@@ -28,11 +28,8 @@ const Board = ({
       setBoard(newBoard);
     });
 
-    return () => {
-      // dispose listener
-      listener();
-    };
-  });
+    return () => listener();
+  }, []);
 
   const addToBoard = (boardName, items, newValue) => {
     const newItems = [...items, newValue];
