@@ -66,46 +66,46 @@ const Board = ({
           <>
             <h2 className={styles.heading}>{board.name}</h2>
             <div className={styles.grid}>
-              <div>
-                <Section title='Good'>
-                  <SectionList
-                    items={board.good}
-                    onDelete={i => deleteFromBoard('good', board.good, i)}
-                  />
-                </Section>
-                <SimpleForm
-                  inputLabel='What`s good'
-                  onSubmit={({ value }) =>
-                    addToBoard('good', board.good, value)
-                  }
+              <SimpleForm
+                useTextArea
+                inputLabel='What`s good'
+                onSubmit={({ value }) =>
+                  addToBoard('good', board.action, value)
+                }
+              />
+              <SimpleForm
+                useTextArea
+                inputLabel='What`s bad'
+                onSubmit={({ value }) => addToBoard('bad', board.action, value)}
+              />
+              <SimpleForm
+                useTextArea
+                inputLabel='Actionable?'
+                onSubmit={({ value }) =>
+                  addToBoard('action', board.action, value)
+                }
+              />
+            </div>
+            <hr className={styles.separator} />
+            <div className={styles.grid}>
+              <Section title='Good'>
+                <SectionList
+                  items={board.good}
+                  onDelete={i => deleteFromBoard('good', board.good, i)}
                 />
-              </div>
-              <div>
-                <Section title='Bad'>
-                  <SectionList
-                    items={board.bad}
-                    onDelete={i => deleteFromBoard('bad', board.bad, i)}
-                  />
-                </Section>
-                <SimpleForm
-                  inputLabel='What`s bad'
-                  onSubmit={({ value }) => addToBoard('bad', board.bad, value)}
+              </Section>
+              <Section title='Bad'>
+                <SectionList
+                  items={board.bad}
+                  onDelete={i => deleteFromBoard('bad', board.bad, i)}
                 />
-              </div>
-              <div>
-                <Section title='Action'>
-                  <SectionList
-                    items={board.action}
-                    onDelete={i => deleteFromBoard('action', board.action, i)}
-                  />
-                </Section>
-                <SimpleForm
-                  inputLabel='Actionable?'
-                  onSubmit={({ value }) =>
-                    addToBoard('action', board.action, value)
-                  }
+              </Section>
+              <Section title='Actionable'>
+                <SectionList
+                  items={board.action}
+                  onDelete={i => deleteFromBoard('action', board.action, i)}
                 />
-              </div>
+              </Section>
             </div>
           </>
         )}
