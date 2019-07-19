@@ -1,0 +1,16 @@
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.list {
+  display: row;
+  width: 100%;
+}
+
+.line {
+  height: 1px;
+  background-color: black;
+  width: 100%;
+}
