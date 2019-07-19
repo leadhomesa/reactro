@@ -44,58 +44,57 @@ const Board = ({
           <>
             <h2 className={styles.heading}>{board.name}</h2>
             <div className={styles.grid}>
-              <div>
-                <Section title='Good'>
-                  <ul className='nes-list is-disc'>
-                    {board.good && board.good.map(x => <li key={x}>{x}</li>)}
-                  </ul>
-                </Section>
-                <SimpleForm
-                  inputLabel='What`s good'
-                  onSubmit={({ value }) => {
-                    const good = board.good || [];
-                    firestore
-                      .getCollection('boards')
-                      .doc(boardId)
-                      .update({ good: [...good, value] });
-                  }}
-                />
-              </div>
-              <div>
-                <Section title='Bad'>
-                  <ul className='nes-list is-disc'>
-                    {board.bad && board.bad.map(x => <li key={x}>{x}</li>)}
-                  </ul>
-                </Section>
-                <SimpleForm
-                  inputLabel='What`s bad'
-                  onSubmit={({ value }) => {
-                    const bad = board.bad || [];
-                    firestore
-                      .getCollection('boards')
-                      .doc(boardId)
-                      .update({ bad: [...bad, value] });
-                  }}
-                />
-              </div>
-              <div>
-                <Section title='Action'>
-                  <ul className='nes-list is-disc'>
-                    {board.action &&
-                      board.action.map(x => <li key={x}>{x}</li>)}
-                  </ul>
-                </Section>
-                <SimpleForm
-                  inputLabel='Actionable?'
-                  onSubmit={({ value }) => {
-                    const action = board.action || [];
-                    firestore
-                      .getCollection('boards')
-                      .doc(boardId)
-                      .update({ action: [...action, value] });
-                  }}
-                />
-              </div>
+              <SimpleForm
+                useTextArea
+                inputLabel='What`s good'
+                onSubmit={({ value }) => {
+                  const good = board.good || [];
+                  firestore
+                    .getCollection('boards')
+                    .doc(boardId)
+                    .update({ good: [...good, value] });
+                }}
+              />
+              <SimpleForm
+                useTextArea
+                inputLabel='What`s bad'
+                onSubmit={({ value }) => {
+                  const bad = board.bad || [];
+                  firestore
+                    .getCollection('boards')
+                    .doc(boardId)
+                    .update({ bad: [...bad, value] });
+                }}
+              />
+              <SimpleForm
+                useTextArea
+                inputLabel='Actionable?'
+                onSubmit={({ value }) => {
+                  const action = board.action || [];
+                  firestore
+                    .getCollection('boards')
+                    .doc(boardId)
+                    .update({ action: [...action, value] });
+                }}
+              />
+            </div>
+            <hr className={styles.separator} />
+            <div className={styles.grid}>
+              <Section title='Good'>
+                <ul className='nes-list is-disc'>
+                  {board.good && board.good.map(x => <li key={x}>{x}</li>)}
+                </ul>
+              </Section>
+              <Section title='Bad'>
+                <ul className='nes-list is-disc'>
+                  {board.bad && board.bad.map(x => <li key={x}>{x}</li>)}
+                </ul>
+              </Section>
+              <Section title='Actionable'>
+                <ul className='nes-list is-disc'>
+                  {board.action && board.action.map(x => <li key={x}>{x}</li>)}
+                </ul>
+              </Section>
             </div>
           </>
         )}

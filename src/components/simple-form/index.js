@@ -5,7 +5,9 @@ import { Form, Field } from 'react-final-form';
 
 import styles from './style.css';
 
-const SimpleForm = ({ onSubmit, inputLabel }) => {
+const SimpleForm = ({ onSubmit, inputLabel, useTextArea = false }) => {
+  const componentName = useTextArea ? 'textarea' : 'input';
+  const nesClassName = useTextArea ? 'nes-textarea' : 'nes-input';
   return (
     <Form
       onSubmit={onSubmit}
@@ -20,10 +22,10 @@ const SimpleForm = ({ onSubmit, inputLabel }) => {
           <div className='nes-field'>
             <label>{inputLabel}</label>
             <Field
-              component='input'
+              component={componentName}
               type='text'
               name='value'
-              className={classNames('nes-input', styles.input)}
+              className={classNames(nesClassName, styles.input)}
             />
           </div>
           <button
@@ -41,7 +43,8 @@ const SimpleForm = ({ onSubmit, inputLabel }) => {
 
 SimpleForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  inputLabel: PropTypes.string.isRequired
+  inputLabel: PropTypes.string.isRequired,
+  useTextArea: PropTypes.bool
 };
 
 export default SimpleForm;
