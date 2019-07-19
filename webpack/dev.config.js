@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 module.exports = Object.assign(
   {
     mode: 'development',
+    devtool: 'source-map',
     devServer: {
       stats: 'minimal',
       hot: true,
