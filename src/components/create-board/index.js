@@ -14,7 +14,7 @@ const Radio = ({ input, children }) => (
   </label>
 );
 
-const CreateBoardForm = ({ onSubmit, useTextArea = false }) => {
+const CreateBoardForm = ({ onSubmit }) => {
   return (
     <Form
       onSubmit={({ quarter, sprintNumber }) => {
@@ -73,8 +73,7 @@ const CreateBoardForm = ({ onSubmit, useTextArea = false }) => {
 };
 
 CreateBoardForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  useTextArea: PropTypes.bool
+  onSubmit: PropTypes.func.isRequired
 };
 
 Radio.propTypes = {
