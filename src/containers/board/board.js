@@ -35,9 +35,8 @@ const Board = ({
   });
 
   const addToBoard = (boardName, items, newValue) => {
-    items = items || [];
-    items.push(newValue);
-    updateBoard(boardName, items);
+    const newItems = [...items, newValue];
+    updateBoard(boardName, newItems);
   };
 
   const deleteFromBoard = (boardName, items, index) => {
