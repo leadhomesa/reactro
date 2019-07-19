@@ -8,7 +8,7 @@ import firestore from '../../firestore';
 
 // components
 import Section from 'components/section';
-import SimpleForm from 'components/simple-form';
+import CreateBoard from 'components/create-board';
 import ProgressBar from 'components/progress-bar';
 
 // styles
@@ -45,10 +45,12 @@ const Team = ({
         {boards && <h2 className={styles.heading}>{team}</h2>}
         {boards && (
           <div className={styles.add}>
-            <SimpleForm
+            <CreateBoard
               inputLabel='Board name'
-              onSubmit={({ value }) => {
-                firestore.getCollection('boards').add({ name: value, team });
+              onSubmit={boardName => {
+                firestore
+                  .getCollection('boards')
+                  .add({ name: boardName, team });
               }}
             />
           </div>
