@@ -2,25 +2,30 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
-import firestore from '../../firestore';
+import firestore from '../../firebase/firestore';
 
 // components
 import Section from 'components/section';
 import SectionList from 'components/section-list';
 import SimpleForm from 'components/simple-form';
 import ProgressBar from 'components/progress-bar';
+import CharacterSelection from 'components/character-selection';
 
 // styles
 import styles from './style.css';
 
 const Board = ({
   match: {
-    params: { board: boardId }
+    params: { board: boardId, team }
   }
 }) => {
   const [board, setBoard] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
+    const firebaseUser = sessionStorage.getItem('firebaseUser');
+    setUser(firebaseUser && JSON.parse(firebaseUser));
+
     const boardRef = firestore.getCollection('boards').doc(boardId);
 
     const listener = boardRef.onSnapshot(snapshot => {
@@ -52,7 +57,7 @@ const Board = ({
       });
   };
 
-  const title = `Reactro - ${(board && board.name) || 'Loading'}`;
+  const title = (board && `${team}: ${board.name}`) || 'Loading';
 
   return (
     <>
@@ -61,23 +66,28 @@ const Board = ({
         {!board && <ProgressBar />}
         {board && (
           <>
-            <h2 className={styles.heading}>{board.name}</h2>
+            <h2 className={styles.heading}>{title}</h2>
+            <CharacterSelection selected={3} />
             <div className={styles.grid}>
               <SimpleForm
                 useTextArea
                 inputLabel='What`s good'
-                onSubmit={({ value }) => addToBoard('good', board.good, value)}
+                onSubmit={({ value }) =>
+                  addToBoard('good', board.good, { value, uid: user.uid })
+                }
               />
               <SimpleForm
                 useTextArea
                 inputLabel='What`s bad'
-                onSubmit={({ value }) => addToBoard('bad', board.bad, value)}
+                onSubmit={({ value }) =>
+                  addToBoard('bad', board.bad, { value, uid: user.uid })
+                }
               />
               <SimpleForm
                 useTextArea
                 inputLabel='Actionable?'
                 onSubmit={({ value }) =>
-                  addToBoard('action', board.action, value)
+                  addToBoard('action', board.action, { value, uid: user.uid })
                 }
               />
             </div>

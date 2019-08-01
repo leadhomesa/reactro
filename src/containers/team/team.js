@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
-import firestore from '../../firestore';
+import firestore from '../../firebase/firestore';
 
 // components
 import Section from 'components/section';
