@@ -21,6 +21,7 @@ const Board = ({
 }) => {
   const [board, setBoard] = useState(null);
   const [user, setUser] = useState(null);
+  let [character, setCharacter] = useState(null);
 
   useEffect(() => {
     const firebaseUser = sessionStorage.getItem('firebaseUser');
@@ -58,7 +59,6 @@ const Board = ({
   };
 
   const title = (board && `${team}: ${board.name}`) || 'Loading';
-
   return (
     <>
       <Helmet title={title} />
@@ -67,7 +67,12 @@ const Board = ({
         {board && (
           <>
             <h2 className={styles.heading}>{title}</h2>
-            <CharacterSelection selected={3} />
+            <CharacterSelection
+              selected={character}
+              onSelect={characterName => {
+                setCharacter(characterName);
+              }}
+            />
             <div className={styles.grid}>
               <SimpleForm
                 useTextArea

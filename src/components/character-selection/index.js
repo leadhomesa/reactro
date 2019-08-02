@@ -14,17 +14,20 @@ const characters = [
   'kirby'
 ];
 
-const CharacterSelection = ({ selected }) => {
+const CharacterSelection = ({ selected, onSelect }) => {
+  if (!selected) selected = 'bulbasaur';
+
   return (
     <section className={styles.characters}>
-      {characters.map((characterName, index) => (
+      {characters.map(characterName => (
         <i
           key={characterName}
           className={classnames(
             `nes-${characterName}`,
             styles.icon,
-            selected === index && styles.active
+            selected === characterName && styles.active
           )}
+          onClick={() => onSelect(characterName)}
         />
       ))}
     </section>
@@ -32,7 +35,8 @@ const CharacterSelection = ({ selected }) => {
 };
 
 CharacterSelection.propTypes = {
-  selected: PropTypes.number.isRequired
+  selected: PropTypes.number.isRequired,
+  onSelect: PropTypes.func
 };
 
 export default CharacterSelection;
