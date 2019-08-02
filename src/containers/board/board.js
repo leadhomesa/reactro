@@ -57,8 +57,16 @@ const Board = ({
       });
   };
 
-  const title = (board && `${team}: ${board.name}`) || 'Loading';
+  const updateUserIcon = (userId, character) => {
+    firestore
+      .getCollection('boards')
+      .doc(boardId)
+      .update({
+        userIcons: { ...board.userIcons, [userId]: character }
+      });
+  };
 
+  const title = (board && `${team}: ${board.name}`) || 'Loading';
   return (
     <>
       <Helmet title={title} />
@@ -67,7 +75,12 @@ const Board = ({
         {board && (
           <>
             <h2 className={styles.heading}>{title}</h2>
-            <CharacterSelection selected={3} />
+            <CharacterSelection
+              selected={board.userIcons && board.userIcons[user.uid]}
+              onSelect={characterName => {
+                updateUserIcon(user.uid, characterName);
+              }}
+            />
             <div className={styles.grid}>
               <SimpleForm
                 useTextArea
@@ -96,18 +109,21 @@ const Board = ({
               <Section title='Good'>
                 <SectionList
                   items={board.good}
+                  userIcons={board.userIcons}
                   onDelete={i => deleteFromBoard('good', board.good, i)}
                 />
               </Section>
               <Section title='Bad'>
                 <SectionList
                   items={board.bad}
+                  userIcons={board.userIcons}
                   onDelete={i => deleteFromBoard('bad', board.bad, i)}
                 />
               </Section>
               <Section title='Actionable'>
                 <SectionList
                   items={board.action}
+                  userIcons={board.userIcons}
                   onDelete={i => deleteFromBoard('action', board.action, i)}
                 />
               </Section>
