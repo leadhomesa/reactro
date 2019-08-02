@@ -41,8 +41,9 @@ const Board = ({
     updateBoard(boardName, newItems);
   };
 
-  const deleteFromBoard = (boardName, items, index) => {
-    if (items && items.length > index) {
+  const deleteFromBoard = (boardName, items, index, userId) => {
+    const itemToDelete = items && items.length > index && items[index];
+    if (itemToDelete && itemToDelete.uid === userId) {
       items.splice(index, 1);
       updateBoard(boardName, items);
     }
@@ -110,21 +111,25 @@ const Board = ({
                 <SectionList
                   items={board.good}
                   userIcons={board.userIcons}
-                  onDelete={i => deleteFromBoard('good', board.good, i)}
+                  onDelete={i =>
+                    deleteFromBoard('good', board.good, i, user.uid)
+                  }
                 />
               </Section>
               <Section title='Bad'>
                 <SectionList
                   items={board.bad}
                   userIcons={board.userIcons}
-                  onDelete={i => deleteFromBoard('bad', board.bad, i)}
+                  onDelete={i => deleteFromBoard('bad', board.bad, i, user.uid)}
                 />
               </Section>
               <Section title='Actionable'>
                 <SectionList
                   items={board.action}
                   userIcons={board.userIcons}
-                  onDelete={i => deleteFromBoard('action', board.action, i)}
+                  onDelete={i =>
+                    deleteFromBoard('action', board.action, i, user.uid)
+                  }
                 />
               </Section>
             </div>
