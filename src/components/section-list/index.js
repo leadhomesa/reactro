@@ -8,11 +8,7 @@ const SectionList = ({ items, onDelete }) => (
   <div className={classNames('nes-list', 'is-desc', styles.list)}>
     {items &&
       items.map((x, index) => (
-        <div
-          key={`item-${index}`}
-          onClick={() => onDelete(index)}
-          className={styles.item}
-        >
+        <div key={`item-${index}`} className={styles.item}>
           <div className={styles.text}>{(x && x.value) || x}</div>
           <i
             className={classNames(
@@ -21,6 +17,7 @@ const SectionList = ({ items, onDelete }) => (
               'is-small',
               styles.delete
             )}
+            onClick={() => onDelete(index)}
           />
         </div>
       ))}
