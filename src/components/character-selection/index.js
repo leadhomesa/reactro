@@ -33,8 +33,8 @@ const CharacterSelection = ({ selected, onSelect }) => {
 };
 
 CharacterSelection.propTypes = {
-  selected: PropTypes.number.isRequired,
-  onSelect: PropTypes.func
+  selected: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
 export default CharacterSelection;
