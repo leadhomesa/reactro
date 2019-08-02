@@ -15,8 +15,6 @@ const characters = [
 ];
 
 const CharacterSelection = ({ selected, onSelect }) => {
-  if (!selected) selected = 'bulbasaur';
-
   return (
     <section className={styles.characters}>
       {characters.map(characterName => (
@@ -25,7 +23,7 @@ const CharacterSelection = ({ selected, onSelect }) => {
           className={classnames(
             `nes-${characterName}`,
             styles.icon,
-            selected === characterName && styles.active
+            (selected || 'bulbasaur') === characterName && styles.active
           )}
           onClick={() => onSelect(characterName)}
         />

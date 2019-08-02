@@ -20,13 +20,16 @@
 }
 
 .text {
-  width: calc(100% - 21px);
+  width: calc(100% - 32px);
   margin: 0;
   padding: 0;
 }
 
 .delete {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+  width: 32px;
+  height: 32px;
+}
+
+.delete::before{
+  transform: scale(0.3);
 }

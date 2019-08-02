@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import styles from './style.css';
 
-const SectionList = ({ items, onDelete }) => (
+const SectionList = ({ items, userIcons, onDelete }) => (
   <div className={classNames('nes-list', 'is-desc', styles.list)}>
     {items &&
       items.map((x, index) => (
@@ -12,8 +12,7 @@ const SectionList = ({ items, onDelete }) => (
           <div className={styles.text}>{(x && x.value) || x}</div>
           <i
             className={classNames(
-              'nes-icon',
-              'close',
+              `nes-${userIcons[x.uid] || 'bulbasaur'}`,
               'is-small',
               styles.delete
             )}
@@ -25,6 +24,7 @@ const SectionList = ({ items, onDelete }) => (
 );
 
 SectionList.propTypes = {
+  userIcons: PropTypes.array,
   items: PropTypes.array,
   onDelete: PropTypes.func
 };
