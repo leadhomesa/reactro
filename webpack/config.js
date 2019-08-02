@@ -2,6 +2,7 @@ require('dotenv').config();
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const alias = require('./alias');
@@ -30,7 +31,12 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV !== 'production'
+            }
+          },
           {
             loader: 'css-loader',
             options: {
@@ -58,6 +64,10 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([{ from: assetsFolder, to: buildFolder }]),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
     new HtmlWebPackPlugin({
       template: './src/index.html',
       publicPath
