@@ -14,7 +14,7 @@ const SectionList = ({ items, userIcons, onDelete }) => (
           <div className={styles.text}>{(x && x.value) || x}</div>
           <i
             className={classNames(
-              `nes-${userIcons[x.uid] || 'bulbasaur'}`,
+              `nes-${(userIcons && userIcons[x.uid]) || 'bulbasaur'}`,
               'is-small',
               styles.delete
             )}
