@@ -4,18 +4,20 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Form, Field } from 'react-final-form';
 
+// components
 import Section from 'components/section';
+import RadioButton from 'components/radio-button';
 
+// styles
 import styles from './style.css';
 
-const Radio = ({ input, children }) => (
-  <label>
-    <input type='radio' className='nes-radio' {...input} />
-    {children}
-  </label>
-);
+const getQuarter = () => {
+  const month = new Date().getMonth() + 3;
+  return Math.floor(month / 3);
+};
 
 const CreateBoardForm = ({ onSubmit }) => {
+  const currentQuarter = `Q${getQuarter()}`;
   return (
     <Form
       onSubmit={({ quarter, sprintNumber }) => {
@@ -23,7 +25,7 @@ const CreateBoardForm = ({ onSubmit }) => {
         onSubmit(boardName);
       }}
       initialValues={{
-        quarter: '01'
+        quarter: currentQuarter
       }}
       render={({ handleSubmit, pristine, form }) => (
         <form
@@ -34,39 +36,60 @@ const CreateBoardForm = ({ onSubmit }) => {
           }}
         >
           <Section title='Create Board' className={styles.boards}>
-            <label>Quarter</label>
-
             <div className={classNames(styles.field)}>
-              <Field name='quarter' type='radio' value='Q1' component={Radio}>
-                <span>Q1</span>
-              </Field>
-              <Field name='quarter' type='radio' value='Q2' component={Radio}>
-                <span>Q2</span>
-              </Field>
-              <Field name='quarter' type='radio' value='Q3' component={Radio}>
-                <span>Q3</span>
-              </Field>
-              <Field name='quarter' type='radio' value='Q4' component={Radio}>
-                <span>Q4</span>
-              </Field>
+              <label>Quarter</label>
+              <div className={styles.radioButtons}>
+                <Field
+                  name='quarter'
+                  type='radio'
+                  value='Q1'
+                  component={RadioButton}
+                >
+                  <span>Q1</span>
+                </Field>
+                <Field
+                  name='quarter'
+                  type='radio'
+                  value='Q2'
+                  component={RadioButton}
+                >
+                  <span>Q2</span>
+                </Field>
+                <Field
+                  name='quarter'
+                  type='radio'
+                  value='Q3'
+                  component={RadioButton}
+                >
+                  <span>Q3</span>
+                </Field>
+                <Field
+                  name='quarter'
+                  type='radio'
+                  value='Q4'
+                  component={RadioButton}
+                >
+                  <span>Q4</span>
+                </Field>
+              </div>
             </div>
             <div className={classNames('nes-field', styles.field)}>
               <label>Sprint Number</label>
               <Field
                 component='input'
-                type='text'
+                type='number'
                 name='sprintNumber'
                 className={classNames('nes-input', styles.input)}
               />
             </div>
+            <button
+              type='submit'
+              className={classNames('nes-btn', 'is-primary', styles.submit)}
+              disabled={pristine}
+            >
+              Create
+            </button>
           </Section>
-          <button
-            type='submit'
-            className={classNames('nes-btn', 'is-primary', styles.submit)}
-            disabled={pristine}
-          >
-            Create
-          </button>
         </form>
       )}
     />
@@ -75,11 +98,6 @@ const CreateBoardForm = ({ onSubmit }) => {
 
 CreateBoardForm.propTypes = {
   onSubmit: PropTypes.func.isRequired
-};
-
-Radio.propTypes = {
-  input: PropTypes.object.isRequired,
-  children: PropTypes.array
 };
 
 export default CreateBoardForm;
