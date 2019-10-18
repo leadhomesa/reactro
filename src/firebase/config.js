@@ -1,11 +1,11 @@
 const config = {
-  apiKey: 'AIzaSyDwDs8XkDdhPjQ-67k-zDuvnpd82_BDIp8',
-  authDomain: 'leadhome-reactro.firebaseapp.com',
-  databaseURL: 'https://leadhome-reactro.firebaseio.com',
-  projectId: 'leadhome-reactro',
-  storageBucket: 'leadhome-reactro.appspot.com',
-  messagingSenderId: '449876336912',
-  appId: '1:449876336912:web:d0598cf8f100da8f'
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DB_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID
 };
 
 export default config;

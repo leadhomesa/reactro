@@ -1,4 +1,5 @@
 require('dotenv').config();
+const Dotenv = require('dotenv-webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -63,6 +64,7 @@ module.exports = {
     alias
   },
   plugins: [
+    new Dotenv(),
     new CopyWebpackPlugin([{ from: assetsFolder, to: buildFolder }]),
     new MiniCssExtractPlugin({
       filename: '[name].css',
