@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import classnames from 'classnames';
+
+import styles from './style.css';
 
 const ProgressBar = () => {
   const [value, setValue] = useState(30);
@@ -17,7 +20,11 @@ const ProgressBar = () => {
   }, [value, setValue]);
 
   return (
-    <progress className='nes-progress is-primary' value={value} max='100' />
+    <progress
+      className={classnames('nes-progress', 'is-primary', styles.progress)}
+      value={value}
+      max='100'
+    />
   );
 };
 

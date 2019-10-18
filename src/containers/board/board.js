@@ -10,6 +10,7 @@ import SectionList from 'components/section-list';
 import SimpleForm from 'components/simple-form';
 import ProgressBar from 'components/progress-bar';
 import CharacterSelection from 'components/character-selection';
+import Separator from 'components/separator';
 
 // styles
 import styles from './style.css';
@@ -82,6 +83,7 @@ const Board = ({
                 updateUserIcon(user.uid, characterName);
               }}
             />
+            <Separator />
             <div className={styles.grid}>
               <SimpleForm
                 useTextArea
@@ -105,7 +107,7 @@ const Board = ({
                 }
               />
             </div>
-            <hr className={styles.separator} />
+            <Separator />
             <div className={styles.grid}>
               <Section title='Good'>
                 <SectionList

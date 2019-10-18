@@ -1,0 +1,5 @@
+@media (prefers-color-scheme: dark) {
+  .progress {
+    background-color: var(--tundora);
+  }
+}

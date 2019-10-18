@@ -14,3 +14,15 @@
     flex-wrap: wrap;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    border-color: var(--tundora);
+  }
+
+  .container > p {
+    /* don't @ me */
+    background-color: var(--mineshaft) !important;
+    color: var(--white) !important;
+  }
+}

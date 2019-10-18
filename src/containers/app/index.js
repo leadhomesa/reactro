@@ -16,7 +16,7 @@ import styles from './style.css';
 const App = () => (
   <Fragment>
     <Nav />
-    <div className={styles.container}>
+    <main className={styles.container}>
       <Switch>
         <Route path='/' component={Home} exact />
         <Route path='/:team/:board' component={Board} exact />
@@ -24,7 +24,7 @@ const App = () => (
         <Route path='/health' component={Health} exact />
         <Route component={NotFound} />
       </Switch>
-    </div>
+    </main>
   </Fragment>
 );
 

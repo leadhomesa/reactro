@@ -2,6 +2,9 @@
   --coral: #FF6A70;
   --storm: #51516F;
   --white: #FFFFFF;
+  --mineshaft: #232323;
+  --tundora: #454545;
+  --alto: #dedede;
 }
 
 * {
@@ -12,8 +15,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Press Start 2P', cursive;
-  /* Native apps don't allow text selection, so mobile PWAs shouldn't. */
-  user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -27,5 +28,12 @@ body {
 @media (min-width: 1440px) {
   .container {
     padding: 0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--mineshaft);
+    color: var(--white);
   }
 }

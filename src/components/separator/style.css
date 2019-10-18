@@ -5,3 +5,9 @@
   margin: 2rem auto;
   width: 50%;
 }
+
+@media (prefers-color-scheme: dark) {
+  .separator {
+    background-color: var(--tundora);
+  }
+}
