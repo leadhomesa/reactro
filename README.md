@@ -1,13 +1,17 @@
 # reactro
-retro + react = reactro
+retro + react = reactro 🎉
 
-## Getting Started
+![example](src/assets/demo.png)
+
+<hr />
+
+# Getting Started
 ```
 cp sample.env .env
 npm install
 ```
 
-### Config
+## Config
 Sample config can be found in `sample.env`.
 At the moment the following values are supported:
 - **PORT**: The port the webpack dev server runs on.
@@ -15,12 +19,12 @@ At the moment the following values are supported:
 - **API_URL**: Api Url which is proxied by the Webpack dev server (and nginx if you use the Docker image).
 - **PUBLIC_URL**: This value is only necessary to be included when you need to host the build output on a subdirectory. For example `https://yourwebsite.com/carbon`
 
-## Local development with HMR
+# Local development with HMR
 ```
 npm start
 ```
 
-## Production build
+# Production build
 - Set NODE_ENV=production to enable the service worker.
 ```
 npm run build
