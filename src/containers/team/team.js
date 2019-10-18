@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -11,6 +10,7 @@ import Section from 'components/section';
 import CreateBoardForm from 'components/create-board';
 import ProgressBar from 'components/progress-bar';
 import Separator from 'components/separator';
+import Link from 'components/link';
 
 // styles
 import styles from './style.css';

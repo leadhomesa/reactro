@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  border-bottom: 2px solid #dedede;
+  border-bottom: 2px solid var(--alto);
   padding-bottom: 1rem;
   margin-bottom: 2rem;
 }
@@ -28,8 +28,19 @@
 .delete {
   width: 32px;
   height: 32px;
+  opacity: 1.0;
 }
 
 .delete::before{
   transform: scale(0.3);
+}
+
+.character {
+  width: 32px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .item {
+    border-bottom-color: var(--tundora);
+  }
 }

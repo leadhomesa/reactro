@@ -1,18 +1,27 @@
 .characters {
   display: flex;
-  justify-content: center;
-  margin: 2rem 0;
+  justify-content: space-around;
+  margin-top: 1rem;
 }
 
-.icon {
+.character, .icon {
   margin-right: 1rem;
   opacity: 0.4;
 }
 
-.icon.active {
+.character {
+  width: 100px;
+}
+
+.character.active, .icon.active {
   opacity: 1;
 }
 
-.icon:last-child {
+.character:last-child, .icon:last-child {
   margin-right: 0;
+}
+
+
+.disabled {
+  opacity: 0.1;
 }

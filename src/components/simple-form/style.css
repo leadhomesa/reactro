@@ -12,3 +12,14 @@
 .submit {
   margin-top: 1rem;
 }
+
+@media (prefers-color-scheme: dark) {
+  .submit {
+    border-radius: 4px;
+  }
+
+  .input {
+    background-color: var(--tundora);
+    color: var(--white);
+  }
+}
