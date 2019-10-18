@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -10,6 +10,7 @@ import firestore from '../../firebase/firestore';
 import Section from 'components/section';
 import CreateBoardForm from 'components/create-board';
 import ProgressBar from 'components/progress-bar';
+import Separator from 'components/separator';
 
 // styles
 import styles from './style.css';
@@ -27,10 +28,25 @@ const Team = ({
     const query = boardsRef.where('team', '==', team);
 
     const listener = query.onSnapshot(snapshot => {
-      const fetchedBoards = [];
-      snapshot.forEach(doc =>
-        fetchedBoards.push({ id: doc.id, ...doc.data() })
-      );
+      // create object with each quarter
+      const fetchedBoards = {
+        Q1: [],
+        Q2: [],
+        Q3: [],
+        Q4: []
+      };
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+
+        // try to split the board name, might be created with old UI so need to cater for that
+        const parts = data.name.split(' - ');
+        const quarter = parts[0] || 'Q1';
+        const name = parts[1] || data.name;
+
+        fetchedBoards[quarter].push({ id: doc.id, ...data, name });
+      });
+
       setBoards(fetchedBoards);
     });
 
@@ -55,19 +71,27 @@ const Team = ({
             />
           </div>
         )}
-        {boards && (
-          <Section title='Boards' className={styles.boards}>
-            {boards.map(x => (
-              <Link
-                key={x.name}
-                className={classNames('nes-btn', styles.button)}
-                to={`/${team}/${x.id}`}
+        {boards && <Separator />}
+        <div className={styles.boardsContainer}>
+          {boards &&
+            Object.keys(boards).map(quarter => (
+              <Section
+                key={`quarter-${quarter}`}
+                title={quarter}
+                className={styles.boards}
               >
-                {x.name}
-              </Link>
+                {boards[quarter].map(b => (
+                  <Link
+                    key={b.name}
+                    className={classNames('nes-btn', styles.button)}
+                    to={`/${team}/${b.id}`}
+                  >
+                    {b.name}
+                  </Link>
+                ))}
+              </Section>
             ))}
-          </Section>
-        )}
+        </div>
       </div>
     </>
   );

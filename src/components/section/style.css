@@ -5,6 +5,7 @@
 .children {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 @media (min-width: 768px) {

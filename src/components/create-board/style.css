@@ -19,6 +19,11 @@
 
 .boards {
   display: flex;
-  flex-direction: row;
   margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .form {
+    width: 500px;
+  }
 }
