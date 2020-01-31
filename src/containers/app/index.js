@@ -1,31 +1,34 @@
-import React, { Fragment } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
-
-// containers
-import Home from 'containers/home';
-import Team from 'containers/team';
-import Board from 'containers/board';
-import NotFound from 'containers/not-found';
-import Health from 'containers/health';
 
 // components
 import Nav from 'components/nav';
+import ProgressBar from 'components/progress-bar';
 
 import styles from './style.css';
 
+// lazy containers
+const Home = lazy(() => import('containers/home'));
+const Team = lazy(() => import('containers/team'));
+const Board = lazy(() => import('containers/board'));
+const NotFound = lazy(() => import('containers/not-found'));
+const Health = lazy(() => import('containers/health'));
+
 const App = () => (
-  <Fragment>
+  <>
     <Nav />
     <main className={styles.container}>
-      <Switch>
-        <Route path='/' component={Home} exact />
-        <Route path='/:team/:board' component={Board} exact />
-        <Route path='/:team' component={Team} exact />
-        <Route path='/health' component={Health} exact />
-        <Route component={NotFound} />
-      </Switch>
+      <Suspense fallback={<ProgressBar />}>
+        <Switch>
+          <Route path='/' component={Home} exact />
+          <Route path='/:team/:board' component={Board} exact />
+          <Route path='/:team' component={Team} exact />
+          <Route path='/health' component={Health} exact />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
     </main>
-  </Fragment>
+  </>
 );
 
 export default App;

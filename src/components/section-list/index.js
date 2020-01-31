@@ -5,6 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Item from './item';
 import styles from './style.css';
 
 const extraCharacters = [
@@ -17,7 +18,7 @@ const extraCharacters = [
   'vaultboy'
 ];
 
-const SectionList = ({ items, userIcons, onDelete }) => (
+const SectionList = ({ items, userIcons, onDelete, onLike, userId }) => (
   <div className={classNames('nes-list', 'is-desc', styles.list)}>
     {items &&
       items.map((x, index) => {
@@ -25,27 +26,16 @@ const SectionList = ({ items, userIcons, onDelete }) => (
         const isExternalCharacter = extraCharacters.includes(character);
 
         return (
-          <div key={`item-${index}`} className={styles.item}>
-            <div className={styles.text}>{(x && x.value) || x}</div>
-            {isExternalCharacter && (
-              <img
-                src={`/${character}.png`}
-                alt={character}
-                className={styles.character}
-                onClick={() => onDelete(index)}
-              />
-            )}
-            {!isExternalCharacter && (
-              <i
-                className={classNames(
-                  `nes-${character}`,
-                  'is-small',
-                  styles.delete
-                )}
-                onClick={() => onDelete(index)}
-              />
-            )}
-          </div>
+          <Item
+            key={`item-${index}`}
+            item={x}
+            index={index}
+            isExternalCharacter={isExternalCharacter}
+            character={character}
+            onDelete={() => onDelete(index)}
+            onLike={() => onLike(index)}
+            userId={userId}
+          />
         );
       })}
   </div>
@@ -54,7 +44,9 @@ const SectionList = ({ items, userIcons, onDelete }) => (
 SectionList.propTypes = {
   userIcons: PropTypes.array,
   items: PropTypes.array,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  onLike: PropTypes.func,
+  userId: PropTypes.string
 };
 
 export default SectionList;

@@ -8,6 +8,7 @@ class Firestore {
   constructor() {
     this.db = null;
   }
+
   init() {
     firebase.initializeApp(config);
     this.db = firebase.firestore();
@@ -19,6 +20,7 @@ class Firestore {
       sessionStorage.setItem('firebaseUser', JSON.stringify(user))
     );
   }
+
   getCollection(name) {
     return this.db.collection(name);
   }

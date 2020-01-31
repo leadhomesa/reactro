@@ -20,7 +20,7 @@
 }
 
 .text {
-  width: calc(100% - 32px);
+  flex: 1;
   margin: 0;
   padding: 0;
 }
@@ -29,6 +29,7 @@
   width: 32px;
   height: 32px;
   opacity: 1.0;
+  margin: 1rem;
 }
 
 .delete::before{
@@ -37,6 +38,15 @@
 
 .character {
   width: 32px;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+}
+
+.likes span {
+  margin-left: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
